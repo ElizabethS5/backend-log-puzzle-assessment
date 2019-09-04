@@ -60,13 +60,13 @@ def download_images(img_urls, dest_dir):
     with an img tag to show each local image file.
     Creates the directory if necessary.
     """
+    print('Retrieving...')
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
     html_string = '<html><body>'
     for i, img_url in enumerate(img_urls):
         image = f'img{i}'
-        image_name = f'./{dest_dir}/img{i}'
-        urllib.request.urlretrieve(img_url, image_name)
+        urllib.request.urlretrieve(img_url, f'./{dest_dir}/{image}')
         html_string += f'<img src="./{image}">'
     html_string += '</body></html>'
     with open(f'./{dest_dir}/index.html', 'w') as f:
